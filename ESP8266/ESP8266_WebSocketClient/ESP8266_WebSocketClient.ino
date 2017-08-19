@@ -1,6 +1,7 @@
 /*
- *Netmedias
- *
+ * Ron Boston
+ * Based on code from: 
+ * Netmedias
  *  Created on: 20.08.2015
  *  
  */
@@ -11,13 +12,14 @@
 #include <Hash.h>
 
 // @@@@@@@@@@@@@@@ You only need to modify modify wi-fi and domain info @@@@@@@@@@@@@@@@@@@@
-const char* ssid     = "xxxxxxn"; //enter your ssid/ wi-fi(case sensitiv) router name - 2.4 Ghz only
-const char* password = "xxxxxxxx";     // enter ssid password (case sensitiv)
-char host[] = "bhathermostat.herokuapp.com"; //enter your Heroku domain name like "espiot.herokuapp.com" 
+const char* ssid     = "beantown"; //enter your ssid/ wi-fi(case sensitiv) router name - 2.4 Ghz only
+const char* password = "ETKNB3WEBY";     // enter ssid password (case sensitiv)
+char host[] = "bhathermstat.herokuapp.com"; //enter your Heroku domain name like "espiot.herokuapp.com" 
 // host and port for TCP connection to HA system
 const char  tcphost[] = "192.168.123.176";
 const int   tcpport = 11090;
 
+int pingCount = 0;
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 int port = 80;
@@ -85,7 +87,17 @@ void setup() {
 
 void loop() {
     webSocket.loop();
-    //delay(500);
+        delay(100);
+	// make sure after every 40 seconds send a ping to Heroku
+	//so it does not terminate the websocket connection
+	//This is to keep the conncetion alive between ESP and Heroku
+	if (pingCount > 20) {
+		pingCount = 0;
+		webSocket.sendTXT("\"heartbeat\":\"keepalive\"");
+	}
+	else {
+		pingCount += 1;
+	}
 }
 
 void processWebScoketRequest(String data){
