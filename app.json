@@ -1,0 +1,7 @@
+{
+  "name": "ESP8266 Thermostat Alexa Skill",
+  "description": "Works with IOT devices over the firewall with Alexa skills",
+  "repository": "https://github.com/rebel7580/ESP8266-Alexa_Skills_Thermostat",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["esp8266", "HomeVision", "without ifttt", "iot", "arduino", "Alexa Skills"]
+}

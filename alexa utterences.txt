@@ -1,0 +1,14 @@
+Alexa, Ask thermostat:
+what is the Temperature
+what is the setpoint
+what is the mode
+what's the Temperature
+what's the setpoint
+what's the mode
+set mode to [heat|cool|off]
+set temperature to xx
+
+
+state: heat, cool, off
+instance: temperature, setpoint, mode
+value: number

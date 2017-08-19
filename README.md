@@ -1,5 +1,4 @@
-# ESP8266-Alexa_Skills_Thermostat
-Control a HomeVision Thermostat via ESP8266
+# ESP8266 Alexa Skills Thermostat
 
 Youtube tutorial 
 
