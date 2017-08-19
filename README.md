@@ -1,9 +1,8 @@
 # ESP8266 Alexa Skills Thermostat
 
-Youtube tutorial 
+This is based on the work of Nassir Malik. See his Youtube tutorials at https://www.youtube.com/channel/UCn8v7OzXk7IqRdKZdf14yjA and code at https://github.com/nassir-malik
 
 Alexa skills to control HomeVision Thermostat via ESP8266 without opening a router's port/firewal.
-
 
 In This project you will be able to control a HomeVision Thermostat via ESP8266 with Alexa skills without opening a firewall port or setuping a revers proxy.
 
