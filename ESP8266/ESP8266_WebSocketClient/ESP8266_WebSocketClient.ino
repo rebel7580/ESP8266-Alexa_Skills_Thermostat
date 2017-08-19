@@ -11,9 +11,9 @@
 #include <Hash.h>
 
 // @@@@@@@@@@@@@@@ You only need to modify modify wi-fi and domain info @@@@@@@@@@@@@@@@@@@@
-const char* ssid     = "beantown"; //enter your ssid/ wi-fi(case sensitiv) router name - 2.4 Ghz only
-const char* password = "ETKNB3WEBY";     // enter ssid password (case sensitiv)
-char host[] = "alexaskillsiot.herokuapp.com"; //enter your Heroku domain name like "espiot.herokuapp.com" 
+const char* ssid     = "xxxxxxn"; //enter your ssid/ wi-fi(case sensitiv) router name - 2.4 Ghz only
+const char* password = "xxxxxxxx";     // enter ssid password (case sensitiv)
+char host[] = "bhathermostat.herokuapp.com"; //enter your Heroku domain name like "espiot.herokuapp.com" 
 // host and port for TCP connection to HA system
 const char  tcphost[] = "192.168.123.176";
 const int   tcpport = 11090;
