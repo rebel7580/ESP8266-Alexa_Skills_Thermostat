@@ -1,7 +1,6 @@
 /*
- * Ron Boston
- * Based on code from: 
- * Netmedias
+ *Netmedias
+ *
  *  Created on: 20.08.2015
  *  
  */
@@ -117,6 +116,9 @@ void processWebScoketRequest(String data){
     if (query == "?") { //if query then check state
         Serial.println("Received query!");
         result = getNetIO(instance);
+        if (instance != "mode") {
+            result += " degrees";
+        }
         Serial.println(result);
         jsonResponse.replace("<text>", instance + " is " + result );
 
@@ -136,6 +138,7 @@ void processWebScoketRequest(String data){
     Serial.println(jsonResponse);
     // send message to server
     webSocket.sendTXT(jsonResponse);
+     if(query == "cmd" || query == "?"){webSocket.sendTXT(jsonResponse);}
 }
 
 String getNetIO(String val){
@@ -157,12 +160,12 @@ String setNetIO(String val, String num){
 
 String sendRequestNetio(String cmd){
     Serial.print("connecting to ");
-    Serial.println(host);
+    Serial.println(tcphost);
     Serial.print("Requesting cmd: ");
     Serial.println(cmd);
     char s[100];
     int i = 0;
-  
+
     if (!TCP.connect(tcphost, tcpport)) {
         Serial.println("connection failed");
         return("Fail");
