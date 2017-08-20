@@ -8,7 +8,13 @@ what's the mode
 set mode to [heat|cool|off]
 set temperature to xx
 
-
+Resulting intents/slots:
+question: what's, what is
 state: heat, cool, off
 instance: temperature, setpoint, mode
-value: number
+setting: number
+
+set mode to {state}
+set {instance} to {setting} degrees
+set {instance} to {setting}
+{question} the {instance}
