@@ -1,8 +1,12 @@
 # ESP8266 Alexa Skills Thermostat
 
+Alexa skill to control HomeVision Thermostat via ESP8266 without opening a router's port/firewall.
+
+You must have a HomeVision Controller running HomeVisionXL software with the NetIO plug-in and an RCS TX-15B thermostat for this to work.
+
 This is based on the work of Nassir Malik. See his Youtube tutorials at https://www.youtube.com/channel/UCn8v7OzXk7IqRdKZdf14yjA and code at https://github.com/nassir-malik
 
-Alexa skills to control HomeVision Thermostat via ESP8266 without opening a router's port/firewal.
+TCP code used to talk to the HomeVision system is a modified version from Big Dan the Blogging Man at https://bigdanzblog.wordpress.com/2016/02/09/esp8266arduino-ide-communicating-with-tcp/
 
 In This project you will be able to control a HomeVision Thermostat via ESP8266 with Alexa skills without opening a firewall port or setuping a revers proxy.
 
@@ -19,6 +23,6 @@ In This project you will be able to control a HomeVision Thermostat via ESP8266 
 
 4. Update and flash your ESP8266 with "ESP8266/ESP8266_WebSocketClient/ESP8266_WebSocketClient.ino"
 
-5. Create an Alexa skills and add Heroku app URL as an end-point
+5. Create an Alexa skills using the info in alexa utterences.txt and add Heroku app URL as an end-point
 
 6. Test and enjoy.
