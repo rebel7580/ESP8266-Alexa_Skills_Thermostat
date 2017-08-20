@@ -109,7 +109,7 @@ def _read_ready(self):
     if self._conn_lost:
         return
     try:
-        time.sleep(.25)
+        time.sleep(.5)
         data = self._sock.recv(self.max_size)
     except (BlockingIOError, InterruptedError):
         pass
