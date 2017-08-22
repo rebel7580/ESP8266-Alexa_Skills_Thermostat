@@ -1,8 +1,12 @@
 /*
- *Netmedias
- *
- *  Created on: 20.08.2015
- *  
+ * ESP8266-Alexa_Skills_Thermostat
+ * Ron Boston 
+ * 20 Aug 2017
+ * 
+ * Code based on the work of Nassir Malik. See his Youtube tutorials at https://www.youtube.com/channel/UCn8v7OzXk7IqRdKZdf14yjA
+ *  and code at https://github.com/nassir-malik
+ * TCP code used to talk to the HomeVision system is a modified version from Big Dan the Blogging Man
+ *  at https://bigdanzblog.wordpress.com/2016/02/09/esp8266arduino-ide-communicating-with-tcp/  
  */
 #include <ArduinoJson.h>
 #include <ESP8266WiFi.h>
@@ -10,16 +14,18 @@
 #include <WebSocketsClient.h>
 #include <Hash.h>
 
-// @@@@@@@@@@@@@@@ You only need to modify modify wi-fi and domain info @@@@@@@@@@@@@@@@@@@@
-const char* ssid     = "beantown"; //enter your ssid/ wi-fi(case sensitiv) router name - 2.4 Ghz only
-const char* password = "ETKNB3WEBY";     // enter ssid password (case sensitiv)
-char host[] = "bhathermstat.herokuapp.com"; //enter your Heroku domain name like "espiot.herokuapp.com" 
+// @@@@@@@@@@@@@@@ modify the next items for your environment
+const char* ssid     = "beantown";          //enter your ssid/ wi-fi(case sensitiv) router name - 2.4 Ghz only
+const char* password = "ETKNB3WEBY";        // enter ssid password (case sensitiv)
+char host[] = "bhathermstat.herokuapp.com"; // enter your Heroku domain name like "espiot.herokuapp.com" 
 // host and port for TCP connection to HA system
 const char  tcphost[] = "192.168.123.176";
 const int   tcpport = 11090;
+// @@@@@@@@@@@@@@@ 
 
 int pingCount = 0;
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+const int BLUELED = 2;
 
 int port = 80;
 char path[] = "/ws"; 
@@ -63,7 +69,10 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
 void setup() {
     Serial.begin(115200);
     Serial.setDebugOutput(true);
-    
+	
+    pinMode(BLUELED, OUTPUT);
+    digitalWrite(BLUELED, HIGH);
+	
     for(uint8_t t = 4; t > 0; t--) {
         delay(1000);
     }
@@ -101,8 +110,10 @@ void loop() {
 
 void processWebScoketRequest(String data){
     String jsonResponse = "{\"version\": \"1.0\",\"sessionAttributes\": {},\"response\": {\"outputSpeech\": {\"type\": \"PlainText\",\"text\": \"<text>\"},\"shouldEndSession\": true}}";
+    
+    digitalWrite(BLUELED, LOW); // Turn on blue LED
+	
     JsonObject& req = jsonBuffer.parseObject(data);
-
     String result = "";
     String instance = req["instance"];
     String setting = req["setting"];
@@ -138,7 +149,9 @@ void processWebScoketRequest(String data){
     Serial.println(jsonResponse);
     // send message to server
     webSocket.sendTXT(jsonResponse);
-     if(query == "cmd" || query == "?"){webSocket.sendTXT(jsonResponse);}
+    if(query == "cmd" || query == "?"){webSocket.sendTXT(jsonResponse);}
+	
+    digitalWrite(BLUELED, HIGH); // Turn off blue LED
 }
 
 String getNetIO(String val){
