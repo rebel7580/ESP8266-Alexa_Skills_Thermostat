@@ -86,7 +86,7 @@ void setup() {
 
 void loop() {
     webSocket.loop();
-        delay(100);
+        delay(2000);
 	// make sure after every 40 seconds send a ping to Heroku
 	//so it does not terminate the websocket connection
 	//This is to keep the conncetion alive between ESP and Heroku
