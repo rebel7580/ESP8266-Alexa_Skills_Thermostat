@@ -41,27 +41,37 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
         response = ''
         try:
 
-            googleRequest = self.reader._buffer.decode('utf-8')
-            googleRequestJson = json.loads(googleRequest)
+            Request = self.reader._buffer.decode('utf-8')
+            RequestJson = json.loads(Request)
             ESPparameters = {}
-            command = googleRequestJson['request']['intent']['slots']
+            command = RequestJson['request']['intent']['slots']
+            ESPparameters['raw'] = Request
             if 'value' in command['question'].keys():
                 ESPparameters['query'] = '?'
             else:
                 ESPparameters['query'] = 'cmd'
 
             if 'value' in command['state'].keys():
-                ESPparameters['state'] = command['state']['value']
+                if 'resolutions' in command['state'].keys():
+                    ESPparameters['state'] = command['state']['resolutions']['resolutionsPerAuthority'][0]['values'][0]['value']['name']
+                else:
+                    ESPparameters['state'] = command['state']['value']
             else:
                 ESPparameters['state'] = 'none'
 
             if 'value' in command['setting'].keys():
-                ESPparameters['setting'] = command['setting']['value']
+                if 'resolutions' in command['setting'].keys():
+                    ESPparameters['setting'] = command['setting']['resolutions']['resolutionsPerAuthority'][0]['values'][0]['value']['name']
+                else:
+                    ESPparameters['setting'] = command['setting']['value']
             else:
                 ESPparameters['setting'] = 'none'
 
             if 'value' in command['instance'].keys():
-                ESPparameters['instance'] = command['instance']['value']
+                if 'resolutions' in command['instance'].keys():
+                    ESPparameters['instance'] = command['instance']['resolutions']['resolutionsPerAuthority'][0]['values'][0]['value']['name']
+                else:
+                    ESPparameters['instance'] = command['instance']['value']
             else:
                 ESPparameters['instance'] = 'none'
 
@@ -109,7 +119,7 @@ def _read_ready(self):
     if self._conn_lost:
         return
     try:
-        time.sleep(.5)
+        time.sleep(.1)
         data = self._sock.recv(self.max_size)
     except (BlockingIOError, InterruptedError):
         pass
