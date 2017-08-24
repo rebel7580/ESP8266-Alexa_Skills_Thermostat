@@ -15,12 +15,12 @@
 #include <Hash.h>
 
 // @@@@@@@@@@@@@@@ modify the next items for your environment
-const char* ssid     = "beantown";          //enter your ssid/ wi-fi(case sensitiv) router name - 2.4 Ghz only
-const char* password = "ETKNB3WEBY";        // enter ssid password (case sensitiv)
+const char* ssid     = "xxxxxxxxxx";          //enter your ssid/ wi-fi(case sensitiv) router name - 2.4 Ghz only
+const char* password = "xxxxxxxxxx";        // enter ssid password (case sensitiv)
 char host[] = "bhathermstat.herokuapp.com"; // enter your Heroku domain name like "espiot.herokuapp.com" 
 // host and port for TCP connection to HA system
-const char  tcphost[] = "192.168.123.176";
-const int   tcpport = 11090;
+const char  tcphost[] = "192.168.123.xxx";
+const int   tcpport = xxxxxxx;
 // @@@@@@@@@@@@@@@ 
 
 int pingCount = 0;
