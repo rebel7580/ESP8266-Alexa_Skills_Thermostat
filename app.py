@@ -45,6 +45,7 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
             RequestJson = json.loads(Request)
             ESPparameters = {}
             command = RequestJson['request']['intent']['slots']
+            ESPparameters['raw'] = Request            
             if 'value' in command['question'].keys():
                 ESPparameters['query'] = '?'
             else:
@@ -74,7 +75,7 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
             else:
                 ESPparameters['instance'] = 'none'
 
-            ESPparameters['raw'] = Request
+
 
             # {"instance": "temperature", "setting": "none", "state": "none", "query":"?"}
             # {"instance": "none", "setting": "none", "state": "heat", "query":"cmd"}
