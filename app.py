@@ -45,7 +45,7 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
             RequestJson = json.loads(Request)
             ESPparameters = {}
             command = RequestJson['request']['intent']['slots']
-            ESPparameters['raw'] = Request            
+         
             if 'value' in command['question'].keys():
                 ESPparameters['query'] = '?'
             else:
