@@ -74,7 +74,7 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
             else:
                 ESPparameters['instance'] = 'none'
 
-            ESPparameters['raw'] = RequestJson
+            ESPparameters['raw'] = Request
 
             # {"instance": "temperature", "setting": "none", "state": "none", "query":"?"}
             # {"instance": "none", "setting": "none", "state": "heat", "query":"cmd"}
