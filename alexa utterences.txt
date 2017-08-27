@@ -1,24 +1,41 @@
+Sample acceptable sentences:
 Alexa, Ask thermostat:
-what is the Temperature
-what is the setpoint
-what is the mode
-what's the Temperature
-what's the setpoint
-what's the mode
-get the Temperature
-get the setpoint
-get the mode
+  what is the Temperature
+  what is the setpoint
+  what is the mode
+  what's the Temperature
+  what's the setpoint
+  what's the mode
+  get the Temperature
+  get the setpoint
+  get the mode
+  set mode to [heat|cool|off]
+  set temperature to xx
+  set temperature to xx degrees
+(Note: "set temperature" actuall sets the setpoint. "temperature" is used here to avoid confusing Alexa w.r.t "set" and "setpoint".)
 
-set mode to [heat|cool|off]
-set temperature to xx
+Intent:
+thermostat
 
-Resulting intents/slots:
-question: what's, what is, get
-state: heat, cool, off
-instance: temperature, setpoint, mode
-setting: number
-
+Utterances:
 set mode to {state}
 set {instance} to {setting} degrees
 set {instance} to {setting}
 {question} the {instance}
+
+Intent Slots:
+question: List_question
+state: List_state
+instance: List_instance
+setting: AMAZON.NUMBER
+
+Slot Types:
+list_question: what is; synonym: what's, get
+list_state: heat;
+       cool; 
+       off
+list_instance: temperature; synonym: temp
+               setpoint; synonym: target, set point, setting
+               mode;
+AMAZON.NUMBER
+
