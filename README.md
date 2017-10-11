@@ -27,4 +27,5 @@ In This project you will be able to control a HomeVision Thermostat via ESP8266 
 
 6. Test and enjoy.
 
+
 See also this Project's [Wiki page](https://github.com/rebel7580/ESP8266-Alexa_Skills_Thermostat/wiki) for more details.

@@ -54,7 +54,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
             
         case WStype_TEXT:
             Serial.println("Got data");       
-            processWebScoketRequest((char*)payload);
+            processWebSocketRequest((char*)payload);
             break;
             
         case WStype_BIN:
@@ -108,9 +108,9 @@ void loop() {
 	}
 }
 
-void processWebScoketRequest(String data){
+void processWebSocketRequest(String data){
     String jsonResponse = "{\"version\": \"1.0\",\"sessionAttributes\": {},\"response\": {\"outputSpeech\": {\"type\": \"PlainText\",\"text\": \"<text>\"},\"shouldEndSession\": true}}";
-    
+    String inst[3];
     digitalWrite(BLUELED, LOW); // Turn on blue LED
 	
     JsonObject& req = jsonBuffer.parseObject(data);
@@ -121,17 +121,32 @@ void processWebScoketRequest(String data){
     String query = req["query"];
     String message = "{\"event\": \"OK\"}";
     
-    Serial.println("Data2-->"+data);
+    Serial.println("Data2-->" + data);
     Serial.println("State-->" + state);
 
     if (query == "?") { //if query then check state
         Serial.println("Received query!");
-        result = getNetIO(instance);
-        if (instance != "mode") {
-            result += " degrees";
+        int n = 1;
+        if (instance == "mode") {
+            inst[0] = "system";
+        } else if (instance == "status") {
+            inst[0] = "system";
+            inst[1] = "setpoint";
+            inst[2] = "temperature";
+            n = 3;
+        } else {
+            inst[0] = instance;
+        }
+        for (int i=0; i<n; i++) {
+            result += inst[i] + " is " + getNetIO(inst[i]);
+            if (inst[i] != "system") {
+                result += " degrees. ";
+            } else {
+                result += ". ";
+            }
         }
         Serial.println(result);
-        jsonResponse.replace("<text>", instance + " is " + result );
+        jsonResponse.replace("<text>", result );
 
     } else if (query == "cmd") { //if command then do
         Serial.println("Received command!");
@@ -208,6 +223,3 @@ String sendRequestNetio(String cmd){
     Serial.println(s);
     return(s);
 }
-
-
-
