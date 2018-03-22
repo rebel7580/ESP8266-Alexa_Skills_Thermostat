@@ -81,6 +81,7 @@ void setup() {
     Serial.print("Connecting to ");
     
     //Serial.println(ssid);
+    WiFi.mode(WIFI_STA);
     WiFiMulti.addAP(ssid, password);
 
     //WiFi.disconnect();
