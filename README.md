@@ -8,7 +8,7 @@ This project is based on the work of Nassir Malik. See his Youtube tutorials at 
 
 TCP code used to talk to the HomeVision system is a modified version from Big Dan the Blogging Man at https://bigdanzblog.wordpress.com/2016/02/09/esp8266arduino-ide-communicating-with-tcp/
 
-In This project you will be able to control a HomeVision Thermostat via ESP8266 with Alexa skills without opening a firewall port or setting up a reverse proxy.
+In this project you will be able to control a HomeVision Thermostat via ESP8266 with Alexa skills without opening a firewall port or setting up a reverse proxy.
 
 1. Download this project and unzip.
 
