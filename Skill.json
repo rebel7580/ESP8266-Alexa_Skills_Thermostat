@@ -1,0 +1,121 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "thermostat",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "thermostat",
+                    "slots": [
+                        {
+                            "name": "instance",
+                            "type": "List_instance"
+                        },
+                        {
+                            "name": "state",
+                            "type": "list_state"
+                        },
+                        {
+                            "name": "setting",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "question",
+                            "type": "list_question"
+                        }
+                    ],
+                    "samples": [
+                        "{question} the {instance}",
+                        "set {instance} to {setting}",
+                        "set {instance} to {setting} degrees",
+                        "set mode to {state}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "List_instance",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "temperature",
+                                "synonyms": [
+                                    "temp"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "setpoint",
+                                "synonyms": [
+                                    "setting",
+                                    "set point",
+                                    "target"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mode"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "status"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "list_question",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "What is",
+                                "synonyms": [
+                                    "what's"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "get"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "list_state",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "heat"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cool"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "off"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
