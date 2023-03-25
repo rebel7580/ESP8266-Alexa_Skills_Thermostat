@@ -6,11 +6,14 @@ Alexa skill to control HomeVision Thermostat via ESP8266 without opening a route
 <i><b>
 NOTE!! Heroku no longer supports free accounts. It's not clear whether this skill method will work with a paid account, or if it does, how the process might be different from what is described here.
 
-Since I no longer use this skill (being replaced by Home Assistant functions), this feature is no longer maintained.
+Since I no longer use this skill (being replaced by Home Assistant functions), this feature is no longer maintained or recommended.
 </b></i>
 <br>
 <br>
-<b>You must have a HomeVision Controller running HomeVisionXL software with the NetIO plug-in and an RCS TX-15B thermostat for this to work.</b>
+<br>
+<br>
+<br>
+<br><b>You must have a HomeVision Controller running HomeVisionXL software with the NetIO plug-in and an RCS TX-15B thermostat for this to work.</b>
 
 This project is based on the work of Nassir Malik. See his YouTube tutorials at https://www.youtube.com/channel/UCn8v7OzXk7IqRdKZdf14yjA , specifically https://www.youtube.com/watch?v=OrhkuJiahDs, and code at https://github.com/nassir-malik.
 
